@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set recolor-darkcolor          "#D3C6AA"
+set recolor-lightcolor         "#272E33"
+set default-bg								 "#272E33"
+
+set statusbar-bg							 "#2E383C"
+set statusbar-fg 							 "#9DA9A0"
+
+set inputbar-bg								 "#1E2326"
+set inputbar-fg 							 "#D3C6AA"
+
+set index-fg									 "#A7C080"
+set index-bg									 "#1E2326"
+set index-active-bg						 "#374145"
+set index-active-fg						 "#A7C080"
+
+
+set recolor                    "true"

@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<project name="HelloWorld" basedir=".">
+  <property name="src" location="src"/>
+	<property name="output" location="bin"/>
+
+  <!-- Define the project's entry point here -->
+	<property name="entry" location=""/>
+	<property name="antshell" location="/root/java-workspace/.sim/ant/antshell/antshell.sh"/>
+
+  <target name="init">
+    <!-- Create the time stamp -->
+    <tstamp/>
+    <!-- Create build directory struc:ture used by compile -->
+    <mkdir dir="${output}"/>
+    <mkdir dir="${src}"/>
+	</target>
+
+  <target name="compile" depends="init">
+		<javac includeantruntime="false" srcdir="${src}" destdir="${output}"/>
+	</target>
+
+
+	<target name="run" depends="compile">
+		<exec executable="/bin/bash">
+			<arg value="${antshell}"/>
+
+		<!--	<arg value="fireant"/> -->
+			<arg value="run"/>
+			<arg value="${ant.project.name}"/>
+		</exec>
+	</target>
+
+  <target name="clean">
+    <delete dir="${output}"/>
+  </target>
+</project>

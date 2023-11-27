@@ -1,0 +1,78 @@
+<?xml version="1.0"?>
+<project name="" basedir=".">
+  <!--<property name="src" location="src"/>
+	<property name="output" location="bin"/>
+	<property name="lib" location="lib"/>-->
+  <!-- Define the project's entry point here -->
+  <!--<property name="entry" value="Main"/>
+	<property name="antshell" location="/root/java-workspace/.sim/ant/antshell/antshell.sh"/>-->
+  <property name="src.dir" location="src"/>
+  <property name="build.dir" location="bin"/>
+  <property name="dist.dir" location="dist"/>
+  <property name="resources.dir" location="ressources"/>
+  <property name="doc.dir" location="doc"/>
+  <property name="jar.file" value="${dist.dir}/${ant.project.name}.jar"/>
+  <property name="jar.main.class" value=""/>
+
+	<condition property="resources.exist">
+		<available file="${resources.dir}" type="dir"/>
+	</condition>
+
+  <!-- Anthsell properties -->
+  <target name="init">
+    <mkdir dir="${build.dir}"/>
+    <mkdir dir="${dist.dir}"/>
+  </target>
+
+  <target name="init-resources">
+    <mkdir dir="${resources.dir}"/>
+	</target>
+
+  <target name="init-doc">
+    <mkdir dir="${doc.dir}"/>
+  </target>
+
+  <!--
+		===============
+		Compile targets 
+		===============
+	-->
+
+	<target name="compile-resources" if="resources.exist">
+    <copy todir="${build.dir}">
+      <fileset dir="${resources.dir}"/>
+    </copy>
+  </target>
+
+  <target name="compile" depends="compile-resources">
+    <mkdir dir="${build.dir}"/>
+    <javac encoding="ISO-8859-1" srcdir="${src.dir}" destdir="${build.dir}" includeantruntime="false" debug="true"/>
+  </target>
+  <target name="build">
+    <jar destfile="${jar.file}" basedir="${build.dir}">
+      <manifest>
+        <attribute name="Main-Class" value="${jar.main.class}"/>
+        <attribute name="Class-Path" value="${jar.classpath}"/>
+      </manifest>
+    </jar>
+  </target>
+  <target name="run" depends="build">
+    <java jar="${jar.file}" fork="true"/>
+  </target>
+  <target name="clean">
+    <delete dir="${build.dir}"/>
+  </target>
+  <!-- Custom antshell script targets -->
+  <!--<property name="antshell.bash" value="/bin/bash"/>
+	<property name="antshell.script" location="/root/java-workspace/.sim/ant/antshell/antshell.sh"/>
+
+	<target name="antshell-entry" depends="compile">
+		<exec executable="${antshell.bash}">
+			<arg value="${antshell.script}"/>
+			<arg value="$entry"/>
+			<arg value="${ant.project.name}"/>
+		</exec>
+	</target>
+
+	<target name="antshell-update" depends="compile"-->
+</project>
