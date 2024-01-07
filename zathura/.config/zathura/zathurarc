@@ -1,5 +1,7 @@
 #!/bin/bash
 
+# ===== COLORSCHEME =====
+
 set recolor-darkcolor          "#D3C6AA"
 set recolor-lightcolor         "#272E33"
 set default-bg								 "#272E33"
@@ -15,5 +17,9 @@ set index-bg									 "#1E2326"
 set index-active-bg						 "#374145"
 set index-active-fg						 "#A7C080"
 
-
 set recolor                    "true"
+
+# ===== MISC =====
+
+set window-title-basename 			"true"
+
